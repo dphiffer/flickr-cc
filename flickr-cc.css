@@ -1,0 +1,32 @@
+body {
+	font: 14px/22px arial, sans-serif;
+}
+
+form, #about {
+	margin: 15px 0;
+}
+
+input {
+	font-family: arial, sans-serif;
+	font-size: 16px;
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+
+input[type=submit] {
+	border-radius: 5px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+#page {
+	max-width: 1024px;
+	margin: 0 auto;
+}
+
+#photos img {
+	width: 100%;
+	height: auto;
+	vertical-align: top;
+	margin-bottom: 1px;
+}

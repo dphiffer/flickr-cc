@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Flickr CC search</title>
+		<link rel="stylesheet" href="flickr-cc.css">
+	</head>
+	<body>
+		<div id="page">
+			<form action="./">
+				<input type="text" name="q">
+				<input type="submit" value="Search">
+			</form>
+			<div id="about">
+				A minimal Flickr search utility for Creative Commons, Public Domain, US Government Work, and "no known copyright" photos.
+			</div>
+			<div id="photos"></div>
+		</div>
+		<script src="jquery-2.2.2.min.js"></script>
+		<script src="jquery.lazyload.min.js"></script>
+		<script src="flickr.js"></script>
+		<script src="flickr-cc.js"></script>
+		</script>
+	</body>
+</html>
