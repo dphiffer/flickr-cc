@@ -41,8 +41,9 @@
 		};
 
 		// Search for query we derived from the URL
+		// See also: https://www.flickr.com/services/api/flickr.photos.search.html
 		flickr.photos.search({
-			tags: query,
+			text: query,
 			license: "1,2,3,4,5,6,7,8,9" // All the creative-commons licensed photos
 		}, callback);
 
