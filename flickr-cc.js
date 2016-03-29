@@ -1,5 +1,8 @@
 (function($) {
 
+	// Create a new Flickr API wrapper object
+	var flickr = new Flickr('1dff816a4f7ef984b178f7ed3eb85582');
+
 	// If the page was loaded with a 'q' param...
 	if (location.search.substr(0, 3) == '?q=') {
 
@@ -14,9 +17,6 @@
 		// Insert query into text input
 		$('input[name="q"]').val(query);
 
-		// Create a new Flickr API wrapper object
-		var flickr = new Flickr('1dff816a4f7ef984b178f7ed3eb85582');
-
 		// Set up a callback function to handle the photo results
 		var callback = function(rsp) {
 
@@ -25,7 +25,7 @@
 
 			// Iterate over the results, one photo at a time
 			$.each(rsp.photos.photo, function(i, photo) {
-				var src = photo.src('b');
+				var src = photo.src('b').replace('http:', '');
 				var img = '<img class="lazy" data-original="' + src + '" alt="">';
 				var link = '<a href="' + photo.href() + '">';
 				var close = '</a>';
@@ -37,6 +37,12 @@
 				threshold: 200,
 				effect: "fadeIn"
 			});
+			
+			// Add a link back to the official Flickr search results page
+			var flickrSearch = 'https://www.flickr.com/search/?tags=' + encodeURIComponent(query) +
+			                   '&license=' + encodeURIComponent('1,2,3,4,5,6,7,8,9') +
+			                   '&sort=interestingness-desc';
+			$('#see-also').html('See also: <a href="' + flickrSearch + '">Flickr advanced search page</a>');
 
 		};
 
@@ -44,9 +50,17 @@
 		// See also: https://www.flickr.com/services/api/flickr.photos.search.html
 		flickr.photos.search({
 			tags: query,
-			license: "1,2,3,4,5,6,7,8,9" // All the creative-commons licensed photos
+			sort: 'interestingness-desc',
+			license: "1,2,3,4,5,6,7,8,9" // All the permissively licensed photos
 		}, callback);
-
 	}
+
+	// You can uncomment this and check the JS console to see more details about licenses...
+	/*flickr.photos.licenses.getInfo({
+		text: query,
+		license: "1,2,3,4,5,6,7,8,9" // All the permissively licensed photos
+	}, function(rsp) {
+		console.log(rsp);
+	});*/
 
 })(jQuery);
