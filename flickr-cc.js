@@ -25,7 +25,7 @@
 
 			// Iterate over the results, one photo at a time
 			$.each(rsp.photos.photo, function(i, photo) {
-				var src = photo.src('b').replace('http:', '');
+				var src = photo.url_l ? photo.url_l : photo.url_o;
 				var img = '<img class="lazy" data-original="' + src + '" alt="">';
 				var link = '<a href="' + photo.href() + '">';
 				var close = '</a>';
@@ -51,7 +51,8 @@
 		flickr.photos.search({
 			text: query,
 			sort: 'relevance',
-			license: "1,2,3,4,5,6,7,8,9,10" // All the permissively licensed photos
+			license: '1,2,3,4,5,6,7,8,9,10', // All the permissively licensed photos
+			extras: 'url_l,url_o'
 		}, callback);
 	}
 
